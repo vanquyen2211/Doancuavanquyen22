@@ -1,0 +1,62 @@
+{
+  "version": 1,
+  "author": "Mỹ Uyên Văn",
+  "editor": "wokwi",
+  "parts": [
+    {
+      "type": "wokwi-pi-pico",
+      "id": "pico",
+      "top": -195.15,
+      "left": 138,
+      "attrs": { "env": "micropython-20241129-v1.24.1" }
+    },
+    {
+      "type": "wokwi-slide-potentiometer",
+      "id": "pot1",
+      "top": 24.4,
+      "left": -293.6,
+      "rotate": 270,
+      "attrs": { "travelLength": "30" }
+    },
+    {
+      "type": "wokwi-stepper-motor",
+      "id": "stepper1",
+      "top": -418.79,
+      "left": 288.43,
+      "attrs": { "size": "17" }
+    },
+    {
+      "type": "wokwi-a4988",
+      "id": "drv1",
+      "top": -120,
+      "left": 340.8,
+      "rotate": 270,
+      "attrs": {}
+    },
+    { "type": "wokwi-slide-switch", "id": "sw1", "top": -274, "left": -83.3, "attrs": {} },
+    { "type": "wokwi-slide-switch", "id": "sw2", "top": -274, "left": -16.1, "attrs": {} },
+    { "type": "wokwi-led", "id": "led1", "top": -291.6, "left": 71, "attrs": { "color": "red" } }
+  ],
+  "connections": [
+    [ "stepper1:A-", "drv1:2B", "green", [ "v0" ] ],
+    [ "stepper1:A+", "drv1:2A", "green", [ "v0" ] ],
+    [ "stepper1:B+", "drv1:1A", "green", [ "v0" ] ],
+    [ "stepper1:B-", "drv1:1B", "green", [ "v0" ] ],
+    [ "drv1:VDD", "pico:VBUS", "green", [ "v0" ] ],
+    [ "drv1:GND.2", "pico:GND.8", "black", [ "v0" ] ],
+    [ "pico:GND.3", "pot1:GND", "black", [ "h-9.6", "v134.4" ] ],
+    [ "sw2:3", "pico:GP7", "green", [ "v0" ] ],
+    [ "sw1:3", "pico:GP4", "green", [ "v0" ] ],
+    [ "pico:GND.7", "sw2:2", "black", [ "h0" ] ],
+    [ "pico:GND.7", "sw1:2", "black", [ "h0" ] ],
+    [ "pico:GP27", "pot1:SIG", "green", [ "h20.4", "v230.4", "h-364.8", "v-38.4" ] ],
+    [ "drv1:DIR", "pico:GP2", "cyan", [ "v105.8", "h-326", "v-57.6" ] ],
+    [ "drv1:STEP", "pico:GP3", "magenta", [ "v96.2", "h-287.6", "v-182.4" ] ],
+    [ "drv1:SLEEP", "pico:3V3", "green", [ "v48.2", "h-105.2", "v-134.4" ] ],
+    [ "drv1:RESET", "pico:3V3", "green", [ "v38.6", "h-86", "v-86.4" ] ],
+    [ "pot1:VCC", "pico:3V3", "red", [ "v38.4", "h489.6", "v-345.6" ] ],
+    [ "pico:GP16", "led1:A", "green", [ "v19.2", "h-75.6" ] ],
+    [ "pico:GND.2", "led1:C", "black", [ "h0" ] ]
+  ],
+  "dependencies": {}
+}
